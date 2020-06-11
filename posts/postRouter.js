@@ -41,7 +41,7 @@ router.delete("/:id", validatePostId, (req, res) => {
     .getById(id)
     .then((post) => {
       post
-        ? Posts.remove(id).then((deleted) => {
+        ? post.remove(id).then((deleted) => {
             deleted
               ? res
                   .status(200)
@@ -90,7 +90,8 @@ function validatePost(req, res, next) {
 function validatePostId(req, res, next) {
   // do your magic!
   const { id } = req.params;
-  Post.getById(id)
+  post
+    .getById(id)
     .then((post) => {
       if (post) {
         req.post = post;
