@@ -1,22 +1,6 @@
-const express = require("express");
-const postRouter = require("./posts/postRouter");
-const userRouter = require("./users/userRouter");
+// code away!
+const server = require("./server");
 
-const server = express();
-server.use(express.json());
-server.use(logger);
-server.use("/api/posts", postRouter);
-server.use("/api/users", userRouter);
+const PORT = process.env.PORT || 5000;
 
-server.get("/", (req, res) => {
-  res.send(`<h2>Hello world!</h2>`);
-});
-
-//custom middleware
-
-function logger(req, res, next) {
-  console.log(`${new Date().toDateString()} | ${req.method} | ${req.url}`);
-  next();
-}
-
-module.exports = server;
+server.listen(PORT, () => console.log(`server runnin in port ${PORT}`));
